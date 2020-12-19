@@ -1,1 +1,1 @@
-# ch2-password-generator
+# Password Generator Starter Code
