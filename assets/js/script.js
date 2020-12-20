@@ -1,26 +1,31 @@
-// ASCII Characters are being used for passwords, 33-126 is range of letters, numbers and 
-//special characters that will be used. 
-// 65-90 uppercase letters, 48-57 numbers 0-9, 97-122 lowercase letters
-
+//-------------------------------------------------Function to Generate Password
 var generatePassword = function() {
   var passwordString="";
+  var length = 0;
 
-  window.alert("Please choose criteria options for password!");
-  var length = window.prompt("Enter a number length between 8 and 128 of password: ");
-  var useUpper = window.confirm("Should the password have upper case letters?");
-  var useLower = window.confirm("Should the password have lower case letters?");
-  var useNumeric = window.confirm("Should the password have numbers?");
-  var useSpecial = window.confirm("Should the password have special characters (*, ! @ $, etc.)?");
-  // return length + "|" + useUpper + "|" + useLower + "|" + useSpecial;
-
-
+  //------------------------------------------------Get the criteria for the password
+  while (length < 8 || length > 128) {
+    length = parseInt(window.prompt("A password must be at least 8 characters, and no more than 128 characters long.\nEnter a number between 8 and 128: "));
+  }
+  while (!useUpper && !useLower && !useNumeric && !useSpecial) {
+    window.alert("Choose at least one character type to include in password!");
+    var useUpper = window.confirm("Should the password have upper case letters?");
+    var useLower = window.confirm("Should the password have lower case letters?");
+    var useNumeric = window.confirm("Should the password have numbers?");
+    var useSpecial = window.confirm("Should the password have special characters (*, ! @ $, etc.)?");
+  }
+  
+  console.log(length + "|" + useUpper + "|" + useLower + "|" + useSpecial + "|" + useNumeric);
+  
   while (passwordString.length < length) {
     var isUpper = false; isLower = false; isNumeric = false; isSpecial = false;
     var charValue = Math.floor((Math.random() * 93) + 33);
-    console.log(charValue);
+    //console.log(charValue);
     var useCharValue = false;
-    debugger;
 
+    // ASCII characters are being used for passwords 
+    // 33-126 is range of letters, numbers and special characters 
+    // 65-90 uppercase, 48-57 numbers, 97-122 lowercase letters, everything else special chars
     if (charValue >= 65 && charValue <=90) {
       isUpper = true; 
     }
